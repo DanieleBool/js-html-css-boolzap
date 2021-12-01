@@ -1,0 +1,172 @@
+/* commons */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: FontAwesome, Arial,  Helvetica, sans-serif;
+    height: 100vh;
+    background: linear-gradient(rgba(0,150,136,1) 15%, rgba(214,219,215,1) 15%);
+    
+}
+
+i{
+    color: #b1b1b1;
+    padding: 4px;
+}
+
+#root{
+    height: 100%;
+    
+}
+
+.container{
+    max-width: 1080px;
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    height: calc(100% - 4%);
+    margin: 2% auto;
+    /* position: relative; */
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.cont-left{
+    width: 30%;
+    float: left;
+    display: table-cell;
+    
+}
+
+.cont-right{
+    width: 70%;
+    float: left;
+    display: table-cell;
+    border-left: 1px solid #b1b1b1;
+}
+
+.cont-utente{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+
+.cont-utente .desc1{
+    display: flex;
+    align-items: center;   
+}
+
+.cont-utente .desc{
+    display: inline-block;
+}
+
+span{
+    
+}
+
+.cont-bell{
+    display: flex;
+    align-items: center;
+    height: 62px;
+}
+
+.cont-bell span{
+    font-size: 13px; 
+}
+
+.bell{
+    padding: 11px 9px;
+    color: #8edafc;
+    background-color: white;
+    border-radius: 50%;
+    margin: 5px;
+}
+
+.cont-search{
+    background-color: rgb(248, 247, 247);
+    width: 100%;
+    padding: 5px;
+}
+
+.search-btn{
+    font-size: 12px;
+    background-color: white;
+    border: 1px solid #eaeaea;
+    float: left;
+    line-height: 30px;
+    width: 25%;
+    text-align: center;
+}
+
+.search{
+    width: 75%;
+    color: #eaeaea;
+    line-height: 30px;
+    border: 1px solid #eaeaea;
+}
+
+.cont-box{
+    overflow-y: scroll;
+    background-color: white;
+    height: 100%;
+}
+
+.box{
+    height: 60px;
+    /* line-height: 60px;
+    vertical-align: middle; */
+    border-top: 1px solid #eaeaea;
+    display: flex;
+    align-items: center;
+}
+
+.small-font{
+    font-size: 12px;
+    color: #b1b1b1;
+}
+
+.avatar{
+    width: 40px;
+    border-radius: 50%;
+    margin: auto 6px;
+}
+
+.cont-chat{
+    background-image: url('../img/mine.jpg');
+    height: 100%;
+    overflow-y: scroll;
+
+}
+
+.chat{
+    padding: 2% 3%;
+}
+
+/* color */
+
+.gray{
+    background-color: #eaeaea;
+}
+
+.darkgray{
+    color: #b1b1b1;
+}
+
+.cyan{
+    background-color: #8edafc;
+}
+
+.green{
+    background-color: #d5f9ba;
+}
+
+/* debugs */
