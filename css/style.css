@@ -6,7 +6,7 @@
 }
 
 body{
-    font-family: FontAwesome, Arial,  Helvetica, sans-serif;
+    font-family: 'Lato', sans-serif;
     height: 100vh;
     background: linear-gradient(rgba(0,150,136,1) 15%, rgba(214,219,215,1) 15%);
     
@@ -24,34 +24,45 @@ i{
 
 .container{
     max-width: 1080px;
+    background-color: lightgray;
     /* position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); */
+
     height: calc(100% - 4%);
     margin: 2% auto;
-    /* position: relative; */
+    box-shadow: black 1px;
+    display: flex;
 }
 
-.clearfix::after {
+/* .clearfix::after {
     content: "";
     clear: both;
     display: table;
-}
+} */
 
 .cont-left{
     width: 30%;
-    float: left;
-    display: table-cell;
+    /* float: left; */
+    /* display: table-cell; */
+    display: flex;
+    flex-direction: column;
     
 }
 
 .cont-right{
     width: 70%;
-    float: left;
-    display: table-cell;
+    /* float: left; */
+    /* display: table-cell; */
     border-left: 1px solid #b1b1b1;
 }
+
+.cont-left .cont-right{
+    height: 100%;
+}
+
+/* sezioni mittente e destinatario ------------------------------- */
 
 .cont-utente{
     display: flex;
@@ -68,19 +79,33 @@ i{
 .cont-utente .desc{
     display: inline-block;
 }
-
-span{
-    
+.cont-utente, .cont-bell, .box{
+    padding: 10px 15px;
 }
+
+.small-font{
+    font-size: 12px;
+    color: #6e7578;
+}
+
+.avatarr{
+    width: 40px;
+    border-radius: 50%;
+    margin: 0px 10px 0 0;
+
+}
+
+/* sezione 'ricevi notifiche' (campanella) ------------------------------------- */
 
 .cont-bell{
     display: flex;
     align-items: center;
     height: 62px;
+    line-height: 14px;
 }
 
 .cont-bell span{
-    font-size: 13px; 
+    font-size: 13px;
 }
 
 .bell{
@@ -88,8 +113,10 @@ span{
     color: #8edafc;
     background-color: white;
     border-radius: 50%;
-    margin: 5px;
+    margin: 6px;
 }
+
+/* barra di ricerca ------------------------------------------------------------- */
 
 .cont-search{
     background-color: rgb(248, 247, 247);
@@ -98,9 +125,9 @@ span{
 }
 
 .search-btn{
-    font-size: 12px;
+    font-size: 14px;
     background-color: white;
-    border: 1px solid #eaeaea;
+    border: 1px solid #f1f1f1;
     float: left;
     line-height: 30px;
     width: 25%;
@@ -111,13 +138,16 @@ span{
     width: 75%;
     color: #eaeaea;
     line-height: 30px;
-    border: 1px solid #eaeaea;
+    border: 1px solid #f1f1f1;
 }
+
+/* lista contatti ------------------------------------------------ */
 
 .cont-box{
     overflow-y: scroll;
     background-color: white;
     height: 100%;
+    flex-grow: 1;
 }
 
 .box{
@@ -129,29 +159,84 @@ span{
     align-items: center;
 }
 
-.small-font{
-    font-size: 12px;
-    color: #b1b1b1;
-}
-
-.avatar{
-    width: 40px;
-    border-radius: 50%;
-    margin: auto 6px;
-}
+/* sezione messaggi inviati e ricevuti -------------------------- */
 
 .cont-chat{
     background-image: url('../img/mine.jpg');
-    height: 100%;
     overflow-y: scroll;
-
+    display: flex;
+    flex-direction: column;
+    /* height: 100%; */
+    height: calc(100% - 120px);
+    padding: 6% 10%;
 }
 
-.chat{
-    padding: 2% 3%;
+.send-message{
+    height: 70px;
+    background-color: #f3eeea;
 }
 
-/* color */
+.message{
+    display: flex;
+}
+
+.message-text{
+    max-width: 50%;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 4px;
+}
+
+.message-text.sent{
+    background-color: #d5f9ba;
+    margin-left: auto;
+}
+
+.message-text.received{
+    background-color: #fff;
+}
+
+.message-date{
+    font-size: 11px;
+    color: #888;
+    margin-top: 10px;
+    text-align: right;
+}
+
+/* input invio messaggi -------------------------------------------- */
+
+.cont-mess{
+    background-color: rgb(248, 247, 247);
+    width: 100%;
+    height: 60px;
+    padding: 1%;
+    background-color: #f3eeea;
+    display: flex;
+    align-items: center;
+}
+
+.cont-mess i{
+    width: 10%;
+    text-align: center;
+    color: #6e7578;
+    font-size: 20px;
+}
+
+#mess{
+    width: calc(100% - 22%);
+    line-height: 40px;
+    border: 1px solid #eaeaea;
+    border-radius: 6px;
+}
+
+/* impostazioni placeholder */
+
+textarea:focus, input:focus{
+    outline: none;
+    padding-left: 10px;
+}
+
+/* colori ----------------------------------------------------------- */
 
 .gray{
     background-color: #eaeaea;

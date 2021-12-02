@@ -6,17 +6,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap" rel="stylesheet">
         <title>Boolzapp</title>
     </head>
     <body>
         <div id="root">
             <!-- inizio main -->
-            <main class="container clearfix">
+            <main class="container">
                 <aside class="cont-left">
-                    <div class="cont-utente gray ">
+                <!-- il mio avatar -->
+                    <div class="cont-utente gray">
                         <div class="desc1">
-                            <img class="avatar" src="img/avatar_io.jpg" alt="me">
+                            <img class="avatarr" src="img/avatar_io.jpg" alt="me">
                             <span class="">Nome Utente</span>
                         </div>
                         <div>
@@ -24,46 +27,52 @@
                             <i class="fas fa-comment-alt"></i>
                             <i class="fas fa-ellipsis-v"></i>
                         </div>
-                    </div>  
+                    </div>
+                <!-- campanella -->
                     <div class="cont-bell cyan">
                         <i class="fas fa-bell-slash bell"></i>
                         <div>
                             <span>Ricevi notifiche di nuovi messaggi</span>
-                            <div><a href="#" class="darkgray small-font">Attiva notifiche desktop</a></div>
+                            <div><a href="#" class="small-font">Attiva notifiche desktop</a></div>
                         </div>
                     </div>
                     <!-- <div>
                         <input type="text" name="" id="" v-model="inputValue" @keyup.enter="" placeholder="⌕ Cerca o inizia una nuova chat">                 
                     </div> -->
-                    <div class="cont-search clearfix">
+                <!-- search     -->
+                    <div class="cont-search">
                         <label class="search-btn" for="search"><i class="fas fa-search"></i></label>
                         <input id="search" class="search" type="text" placeholder=" Cerca o inizia una nuova chat">
                     </div>
+                <!-- contatti     -->
                     <div class="cont-box">
-                        <div class="box">
-                            <img class="avatar" src="img/avatar_1.jpg" alt="">
-                            <span>Michele</span>
+                        <div class="box" v-for="(contact, i) in contacts" :class="activeBox == i ? 'gray' : '' " @click="selected(i)">
+                            <!-- <img class="avatarr" :src=" 'img/avatar'+box.avatar+'jpg' " :alt="box.name"> -->
+                            <img class="avatarr" :src="`./img/avatar${contact.avatar}.jpg`" :alt="contact.name">
+                            <span class="contact-name">{{contact.name}}</span>
                         </div>
-                        <div class="box">
-                            <img class="avatar" src="img/avatar_2.jpg" alt="">
+                        <!-- <div class="box">
+                            <img class="avatarr" src="img/avatar_2.jpg" alt="">
                             <span>Fabio</span>
                         </div>
                         <div class="box">
-                            <img class="avatar" src="img/avatar_3.jpg" alt="">
+                            <img class="avatarr" src="img/avatar_3.jpg" alt="">
                             <span>Samuele</span>
                         </div>
                         <div class="box">
-                            <img class="avatar" src="img/avatar_4.jpg" alt="">
+                            <img class="avatarr" src="img/avatar_4.jpg" alt="">
                             <span>Luisa</span>
-                        </div>
+                        </div> -->
                     </div>
                 </aside>
                 <section class="cont-right">
-                    <div class="cont-utente gray">
-                        <div>
-                            <img class="avatar" src="img/avatar_1.jpg" alt="">
-                            <div class="desc">
-                                <div><span>Michele</span></div>
+                <!-- destinatario -->
+                    <div class="cont-utente gray" >
+                        <div class="desc1">
+                            <img class="avatarr" :src="'img/avatar'+contacts[activeBox].avatar+'.jpg'" alt="{{contacts[activeBox].name}}">
+                            <!-- <img class="avatarr" :src="`./img/avatar${contacts[activeBox].avatar}.jpg`" :alt="contact.name"> NON SONO RIUSCITO A CAPIRE WHY NON FUNZIONAVA -->
+                            <div>
+                                <div><span>{{contacts[activeBox].name}}</span></div>
                                 <div><span class="small-font">Ultimo accesso oggi alle:</span></div>
                             </div>
                         </div>
@@ -73,14 +82,25 @@
                             <i class="fas fa-ellipsis-v"></i>
                         </div>
                     </div>  
+                <!-- messaggi -->
                     <div class="cont-chat">
-                        <div class="chat">
-
+                        <div class="message" v-for = "(message, i) in contacts[activeBox].messages">
+                            <div class="message-text" :class="message.status == 'sent' ? 'sent' : 'received' ">
+                                <div class="message-content">{{message.message}}</div>
+                                <div class="message-date">{{message.date}}</div>
+                            </div>
                         </div>
+                        <!-- <div class="message">
+                            <div class="message-text received">
+                                <div class="message-content">Hai portato a spasso il cane?</div>
+                                <div class="message-date">10/01/22 15:3:55</div>
+                            </div>
+                        </div> -->
                     </div>
-                    <div class="cont-write gray">
+                <!-- input messaggio     -->
+                    <div class="cont-mess">
                         <i class="far fa-smile"></i>
-                        <input type="text" name="" id="" v-model="inputValue" @keyup.enter="" placeholder="Scrivi un messaggio">
+                        <input type="text" name="mess" id="mess" v-model="inputMessage" @keyup.enter="send()" placeholder="  Scrivi un messaggio">
                         <i class="fas fa-microphone"></i>
                     </div>
                 </section>       
