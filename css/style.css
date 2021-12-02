@@ -134,9 +134,12 @@ i{
     text-align: center;
 }
 
+.search-btn .fa-search:hover{
+    text-shadow:0px 0px 10px gray;
+}
+
 .search{
     width: 75%;
-    color: #eaeaea;
     line-height: 30px;
     border: 1px solid #f1f1f1;
 }
@@ -233,6 +236,9 @@ i{
 
 textarea:focus, input:focus{
     outline: none;
+}
+
+input{
     padding-left: 10px;
 }
 

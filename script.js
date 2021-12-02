@@ -90,6 +90,7 @@ const app = new Vue({
 
         inputMessage: '',
         activeBox: 0,
+        inputIncludes: '',
     },
 
     methods: {
@@ -98,15 +99,39 @@ const app = new Vue({
         },
 
         send: function() {
+            let date = dayjs().format('DD/MM/YYYY HH:mm:ss');
             // this.contacts[i].messages.push(
-                this.contacts[this.activeBox].messages.push(
+            this.contacts[this.activeBox].messages.push(
                 {
-                    date : 'now',
+                    date : date,
                     message : this.inputMessage,
                     status : 'sent',
-                },
-                this.inputMessage = '',
-            );
+                }
+            ),
+            this.inputMessage = '';
+            setTimeout(this.received, 1500);
+        },
+
+        received: function() {
+
+            let date = dayjs().format('DD/MM/YYYY HH:mm:ss');
+            this.contacts[this.activeBox].messages.push(
+                {
+                    date : date,
+                    message : 'ok',
+                    status : 'received',
+                });
+        },
+
+        find: function(i) {
+            inputIncludes = this.inputIncludes.toLowerCase();
+            names = this.contacts[i].name.toLowerCase();
+            if(names.includes(inputIncludes)){
+                return true
+            }else{
+                return false
+            }
+
         },
     },
 });

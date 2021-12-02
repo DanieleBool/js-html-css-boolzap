@@ -41,12 +41,12 @@
                     </div> -->
                 <!-- search     -->
                     <div class="cont-search">
-                        <label class="search-btn" for="search"><i class="fas fa-search"></i></label>
-                        <input id="search" class="search" type="text" placeholder=" Cerca o inizia una nuova chat">
+                        <label class="search-btn" for="search" @click="find()"><i class="fas fa-search"></i></label>
+                        <input id="search" class="search" type="text" v-model="inputIncludes" @click.enter="find()" placeholder=" Cerca o inizia una nuova chat">
                     </div>
                 <!-- contatti     -->
                     <div class="cont-box">
-                        <div class="box" v-for="(contact, i) in contacts" :class="activeBox == i ? 'gray' : '' " @click="selected(i)">
+                        <div class="box" v-for="(contact, i) in contacts" :class="activeBox == i ? 'gray' : '' " @click="selected(i)" v-if="find(i)">
                             <!-- <img class="avatarr" :src=" 'img/avatar'+box.avatar+'jpg' " :alt="box.name"> -->
                             <img class="avatarr" :src="`./img/avatar${contact.avatar}.jpg`" :alt="contact.name">
                             <span class="contact-name">{{contact.name}}</span>
@@ -107,7 +107,7 @@
             </main>
             <!-- fine main -->
         </div>
-
+        <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/dayjs.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
         <script src="script.js"></script>
     </body>
