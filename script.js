@@ -94,10 +94,13 @@ const app = new Vue({
     },
 
     methods: {
+
+        // selezionare un contatto tramite la mia variabile 'activeBox'.
         selected: function(i) {
             this.activeBox = i;
         },
 
+        // inviare un messaggio al contatto selezionato tramite 'activeBox', inserire quindi nell'array il messaggio in input 'activeMessage'.
         send: function() {
             let date = dayjs().format('DD/MM/YYYY HH:mm:ss');
             // this.contacts[i].messages.push(
@@ -106,14 +109,15 @@ const app = new Vue({
                     date : date,
                     message : this.inputMessage,
                     status : 'sent',
-                }
+                },
             ),
             this.inputMessage = '';
+        // ricevere un messaggio di risposta dopo un minuto e mezzo.
             setTimeout(this.received, 1500);
         },
 
+        // inserire nell'array il messaggio di riposta al messaggio in input dell'utente.
         received: function() {
-
             let date = dayjs().format('DD/MM/YYYY HH:mm:ss');
             this.contacts[this.activeBox].messages.push(
                 {
@@ -123,6 +127,7 @@ const app = new Vue({
                 });
         },
 
+        // prende un input (inputIncludes) dall'utente e cerca una corrispondenza nell'array, facendo attenzione alla sensibilità alle lettere maiuscole e minuscole.
         find: function(i) {
             inputIncludes = this.inputIncludes.toLowerCase();
             names = this.contacts[i].name.toLowerCase();
